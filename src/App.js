@@ -11,11 +11,13 @@ class App extends Component {
     item: "",
     editItem: false
   };
+// it will be passed to the input component via the props
   handleChange = e => {
     this.setState({
       item: e.target.value
     });
   };
+// it will be passed to the input component via the props
   handleSubmit = e => {
     e.preventDefault();
 
@@ -23,8 +25,9 @@ class App extends Component {
       id: this.state.id,
       title: this.state.item
     };
+
     const updatedItems = [...this.state.items, newItem];
-    this.setState({
+    this.setState({  //useing setState to make shallow merge
       items: updatedItems,
       id: uuid(),
       item: "",
@@ -33,17 +36,24 @@ class App extends Component {
     // e.targe.value=""
     //console.log(updatedItems);
   };
+
+// it will be passed to the TodoList component via the props
+
   clearList = () => {
     this.setState({
       items: []
     });
   };
+// it will be passed to the TodoList component via the props
+
   handleDelete = id => {
     const filterdItems = this.state.items.filter(item => item.id !== id);
     this.setState({
       items: filterdItems
     });
   };
+// it will be passed to the TodoList component via the props
+  
   handleEdit = id => {
     const filterdItems = this.state.items.filter(item => item.id !== id);
     this.setState({
